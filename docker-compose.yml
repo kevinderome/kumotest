@@ -1,0 +1,8 @@
+version: '3'
+services:
+  server:
+    image: server:latest
+    build: server
+    ports:
+      - "8001:8001"
+    restart: always
