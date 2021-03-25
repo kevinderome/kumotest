@@ -11,12 +11,13 @@ jobs:
         uses: actions/checkout@v2
       - name: go build server
         run: |
-          go build server/
+          cd server/src
+          go build .
       - name: upload binary
         uses: actions/upload-artifact@v2
         with:
           name: server-binary
-          path: server/server
+          path: server/src/server
 
 
   build_client:
@@ -29,12 +30,13 @@ jobs:
         uses: actions/checkout@v2
       - name: go build client
         run: |
-          go build client/
+          cd client/src
+          go build .
       - name: upload binary
         uses: actions/upload-artifact@v2
         with:
           name: client_binary
-          path: client/client
+          path: client/src/client
 
 
   test_server:
@@ -45,7 +47,8 @@ jobs:
         uses: actions/checkout@v2
       - name: go test
         run: |
-          go test server/
+          cd server/src/
+          go test .
 
   test_client:
     name: test client
@@ -56,6 +59,7 @@ jobs:
         uses: actions/checkout@v2
       - name: go test
         run: |
-          go test client/
+          cd client/src
+          go test .
 
 
