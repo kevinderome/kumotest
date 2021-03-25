@@ -30,16 +30,17 @@ jobs:
         uses: actions/checkout@v2
       - name: go build client
         run: |
-          cd client/src
+          cd client
           go build .
       - name: upload binary
         uses: actions/upload-artifact@v2
         with:
           name: client_binary
-          path: client/src/client
+          path: client/client
 
 
   test_server:
+    name: test server
     needs: build_server
     runs-on: ubuntu-latest
     steps:
@@ -59,7 +60,7 @@ jobs:
         uses: actions/checkout@v2
       - name: go test
         run: |
-          cd client/src
+          cd client
           go test .
 
 
