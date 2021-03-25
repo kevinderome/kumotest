@@ -16,3 +16,14 @@ go build
 
 ## API Developer
 
+/timezone
+Method: GET
+Return content-type: json
+```
+{
+	TimeZone: "Server_timezone"
+}
+```
+
+### Credits
+Thanks to Kumojin for the technical test. The moral of the story, there are several facets to an exercise.
