@@ -61,7 +61,7 @@ jobs:
           name: server_binary
           path: server_bin
       - name: go test
-        run: ../server_bin & go test .
+        run: ../server_bin/server & go test .
         working-directory: ./client
 
 
