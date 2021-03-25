@@ -1,0 +1,61 @@
+name: continious integration
+on: push
+jobs:
+  build_server:
+    name: build server
+    runs-on: ubuntu-latest
+    env:
+      CGO_ENABLED: 0
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: go build server
+        run: |
+          go build server/
+      - name: upload binary
+        uses: actions/upload-artifact@v2
+        with:
+          name: server-binary
+          path: server/server
+
+
+  build_client:
+    name: build client
+    runs-on: ubuntu-latest
+    env:
+      CGO_ENABLED: 0
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: go build client
+        run: |
+          go build client/
+      - name: upload binary
+        uses: actions/upload-artifact@v2
+        with:
+          name: client_binary
+          path: client/client
+
+
+  test_server:
+    needs: build_server
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: go test
+        run: |
+          go test server/
+
+  test_client:
+    name: test client
+    needs: build_client
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: go test
+        run: |
+          go test client/
+
+
