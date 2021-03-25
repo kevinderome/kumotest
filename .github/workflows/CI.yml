@@ -61,7 +61,9 @@ jobs:
           name: server_binary
           path: server_bin
       - name: go test
-        run: ../server_bin/server & go test .
+        run: |
+          chmod +x ../server_bin/server
+          ../server_bin/server & go test .
         working-directory: ./client
 
 
